@@ -3,4 +3,22 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="redBack">#ffc9c9</color>
+    <color name="redPrim">#ff565f</color>
+    <color name="redSec">#860007</color>
+    <color name="redTextPrim">#000000</color>
+    <color name="redTextSec">#ffffff</color>
+
+    <color name="greenBack">#c9ffc4</color>
+    <color name="greenPrim">#53d462</color>
+    <color name="greenSec">#1c7924</color>
+    <color name="greenTextPrim">#000000</color>
+    <color name="greenTextSec">#ffffff</color>
+
+    <color name="offlineBack">#c4c4c4</color>
+    <color name="offlinePrim">#7b7b7b</color>
+    <color name="offlineSec">#434343</color>
+    <color name="offlineTextPrim">#000000</color>
+    <color name="offlineTextSec">#ffffff</color>
 </resources>

@@ -8,8 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import xyz.reminder.superreminder.R;
+import xyz.reminder.superreminder.activities.MainActivity;
+import xyz.reminder.superreminder.controllers.StyleController;
 
-public class AddReminderFragment extends Fragment {
+import java.util.HashMap;
+import java.util.Map;
+
+public class AddReminderFragment extends StyleFragment {
 
     @Nullable
     @Override
@@ -17,5 +22,14 @@ public class AddReminderFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         return inflater.inflate(R.layout.fragment_addreminder, container, false);
+    }
+
+    @Override
+    protected void fillColorMaps() {
+        backgroundColorMap = new HashMap<>(1);
+        backgroundColorMap.put(R.id.fragment_layout, StyleController.BACKGROUND);
+
+        textColorMap = new HashMap<>(1);
+        textColorMap.put(R.id.addreminder_text, StyleController.TEXT_PRIMARY);
     }
 }
