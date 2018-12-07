@@ -28,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
     int fragmentId;
     ReminderDbManager reminderDb;
 //    TimerService timerService;
-//    ServiceConnection serviceConn;
-    long ix;
+//    ServiceConnection serviceConn;cd
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,15 +40,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         reminderDb = new ReminderDbManager(this);
-
-        Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
-Reminder reminder = new Reminder("Nazwa", timestamp);
-Reminder reminder2 = new Reminder("Nazwa2", timestamp);
-
-    ix = reminderDb.getReminderDAO().insert(reminder);
-            reminderDb.getReminderDAO().insert(reminder2);
-
-
     }
 
     @Override
@@ -63,34 +53,7 @@ Reminder reminder2 = new Reminder("Nazwa2", timestamp);
     }
 
     void onToolbarItemClick(View view) {
-    System.out.println("############### select");
-    Reminder r = reminderDb.getReminderDAO().select(ix);
-    System.out.println(r.getId() + "\n" + r.getName() + "\n" + r.getTime());
 
-    System.out.println("############### update (compare ids)");
-    r.setName("Inne imie");
-    long ii = reminderDb.getReminderDAO().update(r);
-    System.out.println(ii);
-    System.out.println(ix);
-
-    System.out.println("############### select after update");
-    r = reminderDb.getReminderDAO().select(ix);
-    System.out.println(r.getId() + "\n" + r.getName() + "\n" + r.getTime());
-
-    System.out.println("############### selectAll");
-    List<Reminder> rr = reminderDb.getReminderDAO().selectAll();
-    for(Reminder ri: rr)
-        System.out.println(ri.getId() + "\n" + ri.getName() + "\n" + ri.getTime());
-
-    System.out.println("############### delete (compare ids)");
-    ii = reminderDb.getReminderDAO().delete(r);
-    System.out.println(ii);
-
-    System.out.println("############### selectAll after delete");
-    rr = reminderDb.getReminderDAO().selectAll();
-    for(Reminder ri: rr)
-        System.out.println(ri.getId() + "\n" + ri.getName() + "\n" + ri.getTime());
-    System.out.println("###############");
         switch(view.getId()) {
             case R.id.bar_list:
                 changeFragment(new ListFragment());
