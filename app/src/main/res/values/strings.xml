@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SuperReminder</string>
+    <string name="add_reminder">Add reminder</string>
+    <string name="add_name_hint">Add name</string>
+    <string name="no_time">No time selected</string>
+    <string name="no_date">No date selected</string>
+    <string name="save">Save</string>
 </resources>
