@@ -4,8 +4,7 @@
     android:id="@+id/fragment_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/addreminder_text"
@@ -13,14 +12,12 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:textSize="18sp"
-        android:textColor="#1515ac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/addName"
         android:hint="@string/add_name_hint"
-        android:textColor="#1515ac"
         android:layout_marginTop="41dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -31,13 +28,13 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/timeText"
             android:text="@string/no_time"
             android:textSize="18sp"
-            android:textColor="#1515ac"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
@@ -55,13 +52,13 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/dateText"
             android:text="@string/no_time"
             android:textSize="18sp"
-            android:textColor="#1515ac"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"

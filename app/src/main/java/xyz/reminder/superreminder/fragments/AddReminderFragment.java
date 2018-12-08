@@ -105,11 +105,22 @@ public class AddReminderFragment extends StyleFragment implements
 
     @Override
     protected void fillColorMaps() {
-        backgroundColorMap = new HashMap<>(1);
+        backgroundColorMap = new HashMap<>(2);
         backgroundColorMap.put(R.id.fragment_layout, StyleController.BACKGROUND);
+        backgroundColorMap.put(R.id.timeChoose, StyleController.BACKGROUND);
+        backgroundColorMap.put(R.id.saveButton, StyleController.PRIMARY);
+        backgroundColorMap.put(R.id.dateChoose, StyleController.BACKGROUND);
 
         textColorMap = new HashMap<>(1);
         textColorMap.put(R.id.addreminder_text, StyleController.TEXT_PRIMARY);
+        textColorMap.put(R.id.addName, StyleController.TEXT_PRIMARY);
+        textColorMap.put(R.id.timeText, StyleController.TEXT_PRIMARY);
+        textColorMap.put(R.id.dateText, StyleController.TEXT_PRIMARY);
+        textColorMap.put(R.id.saveButton, StyleController.TEXT_SECONDARY);
+
+        imageColorMap = new HashMap<>(1);
+        imageColorMap.put(R.id.timeChoose, StyleController.SECONDARY);
+        imageColorMap.put(R.id.dateChoose, StyleController.SECONDARY);
     }
 
 
