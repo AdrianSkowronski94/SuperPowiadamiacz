@@ -1,29 +1,20 @@
 package xyz.reminder.superreminder.fragments;
 
-import android.media.audiofx.Equalizer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import xyz.reminder.superreminder.R;
 import xyz.reminder.superreminder.activities.MainActivity;
-import xyz.reminder.superreminder.adapters.SettingAdapter;
+import xyz.reminder.superreminder.adapters.SettingsAdapter;
 import xyz.reminder.superreminder.controllers.StyleController;
 
 import java.util.*;
 
 public class SettingsFragment extends StyleFragment {
-
-    private SettingAdapter adapter;
-    private RecyclerView recyclerView;
-    private RadioGroup radioGroup;
 
     @Nullable
     @Override
@@ -37,20 +28,15 @@ public class SettingsFragment extends StyleFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String[] setColors = {"Czerwony", "Zielony"};
-        int[] listImages = new int[]{
-                R.drawable.red_set, R.drawable.green_set,
-        };
+        StyleController styleController = ((MainActivity) getActivity()).getStyleController();
+        List<List<Integer>> cards = new ArrayList<>(2);
+        for(List<Integer> colors: StyleController.POSSIBLE_COLORS)
+            cards.add(colors);
 
-        radioGroup = view.findViewById(R.id.radio_group);
+        ArrayAdapter<List<Integer>> adapter = new SettingsAdapter(getContext(), R.layout.settings_card, cards, (MainActivity) getActivity());
 
-        recyclerView = view.findViewById(R.id.settingRecyclerView);
-        adapter = new SettingAdapter(setColors, listImages);
-        RecyclerView.LayoutManager LayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(LayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
-
+        ListView cardsVG = view.findViewById(R.id.cards);
+        cardsVG.setAdapter(adapter);
     }
 
     protected void fillColorMaps() {

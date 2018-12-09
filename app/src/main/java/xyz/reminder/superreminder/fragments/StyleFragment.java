@@ -4,14 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import xyz.reminder.superreminder.R;
 import xyz.reminder.superreminder.activities.MainActivity;
-import xyz.reminder.superreminder.controllers.StyleController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public abstract class StyleFragment extends Fragment {
@@ -35,6 +30,7 @@ public abstract class StyleFragment extends Fragment {
     protected abstract void fillColorMaps();
 
     protected void applyColors() {
-        ((MainActivity) getActivity()).getStyleController().applyColors(getActivity(), backgroundColorMap, textColorMap, imageColorMap);
+        MainActivity act = (MainActivity) getActivity();
+        act.getStyleController().applyColors(getActivity(), backgroundColorMap, textColorMap, imageColorMap);
     }
 }
