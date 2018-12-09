@@ -6,4 +6,8 @@
     <string name="no_date">No date selected</string>
     <string name="save">Save</string>
     <string name="empty_fields">Fill in all fields</string>
+    <string name="delete">Are you sure?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="empty_list">There are no reminders</string>
 </resources>
