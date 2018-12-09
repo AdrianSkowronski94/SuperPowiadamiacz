@@ -1,37 +1,30 @@
 package xyz.reminder.superreminder.activities;
 
-import android.content.ServiceConnection;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 import xyz.reminder.superreminder.R;
 import xyz.reminder.superreminder.controllers.StyleController;
 import xyz.reminder.superreminder.database.ReminderDbManager;
-import xyz.reminder.superreminder.database.reminder.Reminder;
 import xyz.reminder.superreminder.fragments.AddReminderFragment;
 import xyz.reminder.superreminder.fragments.ListFragment;
 import xyz.reminder.superreminder.fragments.SettingsFragment;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     private int fragmentId;
     private ReminderDbManager reminderDb;
-    private StyleController styleController = new StyleController(false);
+    private StyleController styleController;
+    Fragment fragment;
 //    TimerService timerService;
 //    ServiceConnection serviceConn;cd
 
@@ -48,11 +41,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        styleController = new StyleController(false, getSharedPreferences().getInt("colors", 0));
+
         if (savedInstanceState == null) {
             changeFragment(new ListFragment());
-
-            styleController.applyColors(this, backgroundColorMap, null, imageColorMap);
         }
+        styleController.applyColors(this, backgroundColorMap, null, imageColorMap);
 
         reminderDb = new ReminderDbManager(this);
     }
@@ -62,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    @Override
-    public SharedPreferences getSharedPreferences(String name, int mode) {
-        return super.getSharedPreferences(name, mode);
+
+    public SharedPreferences getSharedPreferences() {
+        return super.getSharedPreferences("DATA", Context.MODE_PRIVATE);
     }
 
     void onToolbarItemClick(View view) {
@@ -98,7 +92,17 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_content, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .commit();
+        this.fragment = fragment;
         fragmentId = fragment.getId();
+    }
+
+    public void retachFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+
+        fm.beginTransaction()
+                .detach(fragment)
+                .attach(fragment)
+                .commit();
     }
 
     private void fillColorMaps() {
@@ -110,6 +114,18 @@ public class MainActivity extends AppCompatActivity {
         imageColorMap.put(R.id.bar_list, StyleController.TEXT_SECONDARY);
         imageColorMap.put(R.id.bar_addreminder, StyleController.TEXT_SECONDARY);
         imageColorMap.put(R.id.bar_settings, StyleController.TEXT_SECONDARY);
+    }
+
+    public Map<Integer, Integer> getBackgroundColorMap() {
+        return backgroundColorMap;
+    }
+
+    public Map<Integer, Integer> getImageColorMap() {
+        return imageColorMap;
+    }
+
+    public int getFragmentId() {
+        return fragmentId;
     }
 }
 

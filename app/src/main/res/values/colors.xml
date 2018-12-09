@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="redBack">#ffc9c9</color>
+    <color name="redBack">#ffdcdc</color>
     <color name="redPrim">#ff565f</color>
     <color name="redSec">#860007</color>
     <color name="redTextPrim">#000000</color>
@@ -15,6 +15,18 @@
     <color name="greenSec">#1c7924</color>
     <color name="greenTextPrim">#000000</color>
     <color name="greenTextSec">#ffffff</color>
+
+    <color name="blueBack">#aeb9ff</color>
+    <color name="bluePrim">#5959ff</color>
+    <color name="blueSec">#2634ab</color>
+    <color name="blueTextPrim">#000000</color>
+    <color name="blueTextSec">#ffffff</color>
+
+    <color name="violetBack">#cb9bff</color>
+    <color name="violetPrim">#a93bfd</color>
+    <color name="violetSec">#59189b</color>
+    <color name="violetTextPrim">#000000</color>
+    <color name="violetTextSec">#ffffff</color>
 
     <color name="offlineBack">#c4c4c4</color>
     <color name="offlinePrim">#7b7b7b</color>

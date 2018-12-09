@@ -7,6 +7,8 @@ import android.support.v7.widget.CardView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import xyz.reminder.superreminder.R;
+import xyz.reminder.superreminder.activities.MainActivity;
+import xyz.reminder.superreminder.fragments.SettingsFragment;
 
 import java.util.*;
 
@@ -24,17 +26,22 @@ public class StyleController {
             new ArrayList<>(Arrays.asList(new Integer[]
                     { R.color.redBack, R.color.redPrim, R.color.redSec, R.color.redTextPrim, R.color.redTextSec })),
             new ArrayList<>(Arrays.asList(new Integer[]
-                    { R.color.greenBack, R.color.greenPrim, R.color.greenSec, R.color.greenTextPrim, R.color.greenTextSec }))
+                    { R.color.greenBack, R.color.greenPrim, R.color.greenSec, R.color.greenTextPrim, R.color.greenTextSec })),
+            new ArrayList<>(Arrays.asList(new Integer[]
+                    { R.color.blueBack, R.color.bluePrim, R.color.blueSec, R.color.blueTextPrim, R.color.blueTextSec })),
+            new ArrayList<>(Arrays.asList(new Integer[]
+                    { R.color.violetBack, R.color.violetPrim, R.color.violetSec, R.color.violetTextPrim, R.color.violetTextSec }))
+
     ));
 
     private int colorsIdx = 0;
     private boolean isOffline;
 
     public StyleController(boolean isOffline) {
-        this.isOffline = isOffline;
+        this.isOffline = isOffline; System.out.println("kolejny konstruktor");
     }
 
-    StyleController(boolean isOffline, int colorsIdx) {
+    public StyleController(boolean isOffline, int colorsIdx) {
         this.isOffline = isOffline;
         this.colorsIdx = colorsIdx;
     }
@@ -66,5 +73,11 @@ public class StyleController {
                 Integer color = act.getResources().getColor(this.getColor(filterColorMap.get(key)));
                 ((ImageView)act.findViewById(key)).setColorFilter(color);
             }
+    }
+
+    public void applyColorsRefresh(Activity act, Map<Integer, Integer> backgroundColorMap, Map<Integer, Integer> textColorMap, Map<Integer, Integer> filterColorMap) {
+        applyColors(act, backgroundColorMap, textColorMap, filterColorMap);
+        act.findViewById(R.id.activity_layout).invalidate();
+        ((MainActivity)act).retachFragment();
     }
 }
