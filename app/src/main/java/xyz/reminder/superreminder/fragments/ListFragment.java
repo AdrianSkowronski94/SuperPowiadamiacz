@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import xyz.reminder.superreminder.R;
+import xyz.reminder.superreminder.activities.MainActivity;
 import xyz.reminder.superreminder.adapters.IRecyclerViewClickListener;
 import xyz.reminder.superreminder.adapters.RemindersAdapter;
 import xyz.reminder.superreminder.controllers.StyleController;
@@ -46,12 +47,22 @@ public class ListFragment extends StyleFragment {
         remindersList = reminderDb.getReminderDAO().selectAll();
         listener = this::showActionsDialog;
 
+        View emptyIndicator = view.findViewById(R.id.list_empty);
+        if(remindersList.isEmpty())
+            emptyIndicator.setVisibility(View.VISIBLE);
+        else
+            emptyIndicator.setVisibility(View.GONE);
+
         adapter = new RemindersAdapter(remindersList, listener);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -66,6 +77,11 @@ public class ListFragment extends StyleFragment {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
                     deleteReminder(position);
+                    View emptyIndicator = getView().findViewById(R.id.list_empty);
+                    if(remindersList.isEmpty())
+                        emptyIndicator.setVisibility(View.VISIBLE);
+                    else
+                        emptyIndicator.setVisibility(View.GONE);
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
@@ -91,7 +107,7 @@ public class ListFragment extends StyleFragment {
         backgroundColorMap.put(R.id.fragment_layout, StyleController.BACKGROUND);
 
         textColorMap = new HashMap<>(1);
-        textColorMap.put(R.id.list_text, StyleController.TEXT_PRIMARY);
+        textColorMap.put(R.id.list_empty, StyleController.TEXT_PRIMARY);
     }
 }
 

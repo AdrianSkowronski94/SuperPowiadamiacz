@@ -72,10 +72,10 @@ public class ReminderDAO {
 
         List<Reminder> reminderList = new ArrayList<>(5);
 
-        cursor.moveToFirst();
-        do {
-            reminderList.add(createReminder(cursor));
-        } while(cursor.moveToNext());
+        if(cursor.moveToFirst())
+            do {
+                reminderList.add(createReminder(cursor));
+            } while(cursor.moveToNext());
 
         cursor.close();
         db.close();

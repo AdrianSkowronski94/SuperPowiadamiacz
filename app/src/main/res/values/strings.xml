@@ -9,4 +9,5 @@
     <string name="delete">Are you sure?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
+    <string name="empty_list">There are no reminders</string>
 </resources>
