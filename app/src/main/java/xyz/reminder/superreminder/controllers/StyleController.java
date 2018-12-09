@@ -3,6 +3,7 @@ package xyz.reminder.superreminder.controllers;
 import android.app.Activity;
 import android.content.Context;
 import android.media.Image;
+import android.support.v7.widget.CardView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import xyz.reminder.superreminder.R;
