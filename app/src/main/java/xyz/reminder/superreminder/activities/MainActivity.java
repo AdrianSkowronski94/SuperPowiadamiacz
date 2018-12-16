@@ -1,7 +1,10 @@
 package xyz.reminder.superreminder.activities;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +18,7 @@ import xyz.reminder.superreminder.database.ReminderDbManager;
 import xyz.reminder.superreminder.fragments.AddReminderFragment;
 import xyz.reminder.superreminder.fragments.ListFragment;
 import xyz.reminder.superreminder.fragments.SettingsFragment;
+import xyz.reminder.superreminder.receivers.ConnectionReceiver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,13 +53,14 @@ public class MainActivity extends AppCompatActivity {
         styleController.applyColors(this, backgroundColorMap, null, imageColorMap);
 
         reminderDb = new ReminderDbManager(this);
+        Class.activity = this;
+        registerReceiver(new ConnectionReceiver(), new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
-
 
     public SharedPreferences getSharedPreferences() {
         return super.getSharedPreferences("DATA", Context.MODE_PRIVATE);
