@@ -15,6 +15,7 @@ import xyz.reminder.superreminder.database.ReminderDbManager;
 import xyz.reminder.superreminder.fragments.AddReminderFragment;
 import xyz.reminder.superreminder.fragments.ListFragment;
 import xyz.reminder.superreminder.fragments.SettingsFragment;
+import xyz.reminder.superreminder.receivers.ConnectionReceiver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
         styleController.applyColors(this, backgroundColorMap, null, imageColorMap);
 
         reminderDb = new ReminderDbManager(this);
+        Class.activity = this;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
-
 
     public SharedPreferences getSharedPreferences() {
         return super.getSharedPreferences("DATA", Context.MODE_PRIVATE);
