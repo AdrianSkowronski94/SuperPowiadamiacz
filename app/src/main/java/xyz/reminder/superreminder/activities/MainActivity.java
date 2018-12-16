@@ -1,7 +1,10 @@
 package xyz.reminder.superreminder.activities;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         reminderDb = new ReminderDbManager(this);
         Class.activity = this;
+        registerReceiver(new ConnectionReceiver(), new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override

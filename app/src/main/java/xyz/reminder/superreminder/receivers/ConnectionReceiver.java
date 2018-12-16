@@ -23,19 +23,20 @@ public class ConnectionReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
         styleController = Class.activity.getStyleController();
 
-        if(intent.getExtras()!=null)
+        if(intent.getExtras()!= null)
         {
             networkInfo = (NetworkInfo) intent.getExtras().get(ConnectivityManager.EXTRA_NETWORK_INFO);
             if (networkInfo != null && networkInfo.getState() == NetworkInfo.State.CONNECTED)
             {
                 styleController.setOnline();
+                System.out.println("online");
             }
             else if (intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, Boolean.FALSE))
             {
-                styleController.setOffline(false);
+                styleController.setOffline();
+                System.out.println("offline");
             }
 
             styleController.applyColorsRefresh(Class.activity,
