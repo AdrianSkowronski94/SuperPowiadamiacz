@@ -52,7 +52,7 @@ public class StyleController {
 
     public void setColorsIdx(int colorsIdx) { this.colorsIdx = colorsIdx; }
     public void setColors(int colorsIdx) { this.setColorsIdx(colorsIdx); }
-    public void setOffline(boolean offline) { isOffline = true; }
+    public void setOffline() { isOffline = true; }
     public void setOnline() { isOffline = false; }
 
     public void applyColors(Activity act, Map<Integer, Integer> backgroundColorMap, Map<Integer, Integer> textColorMap, Map<Integer, Integer> filterColorMap) {
