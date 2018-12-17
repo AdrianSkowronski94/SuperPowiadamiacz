@@ -130,8 +130,8 @@ public class AddReminderFragment extends StyleFragment implements
         this.month = month;
         this.day = dayOfMonth;
 
-        dateText.setText(String.valueOf(dayOfMonth) + "/"
-                         + String.valueOf(month) + "/"
+        dateText.setText(String.format("%02d", dayOfMonth) + "/"
+                         + String.format("%02d", month) + "/"
                          + String.valueOf(year));
     }
 
@@ -140,6 +140,6 @@ public class AddReminderFragment extends StyleFragment implements
         this.hour = hourOfDay;
         this.minute = minute;
 
-        timeText.setText(String.valueOf(hour) + ":" + String.valueOf(minute));
+        timeText.setText(String.format("%02d", hour) + ":" + String.format("%02d", minute));
     }
 }

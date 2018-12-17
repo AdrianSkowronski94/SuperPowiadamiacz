@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Super Powiadamiacz</string>
+    <string name="add_reminder">Dodaj powiadomienie</string>
+    <string name="add_name_hint">Podaj nazwę</string>
+    <string name="no_time">Nie wybrano czasu</string>
+    <string name="no_date">Nie wybrano daty</string>
+    <string name="save">Zapisz</string>
+    <string name="empty_fields">Wypełnij wszystkie pola</string>
+    <string name="delete">Chcesz usunać?</string>
+    <string name="yes">Tak</string>
+    <string name="cancel">Nie</string>
+    <string name="empty_list">Nie ma żadnych powaidomień</string>
+    <string name="notification_description">Powiadomienie</string>
+</resources>

@@ -63,12 +63,11 @@ public class RemindersAdapter extends RecyclerView.Adapter<RemindersAdapter.Remi
         Reminder reminder = remindersList.get(i);
         remindersViewHolder.reminderName.setText(reminder.getName());
         Timestamp ts = reminder.getTime();
-        remindersViewHolder.reminderTime.setText(String.valueOf(ts.getHours()) + ":" + String.valueOf(ts.getMinutes()));
-        remindersViewHolder.reminderDate.setText(String.valueOf(ts.getDay()) + "/" +
-                                                    String.valueOf(ts.getMonth())+ "/" +
-                                                    String.valueOf(ts.getYear()));
+        remindersViewHolder.reminderTime.setText(String.format("%02d", ts.getHours()) + ":" + String.format("%02d",ts.getMinutes()));// String.valueOf(ts.getMinutes()));
+        remindersViewHolder.reminderDate.setText(String.format("%02d", ts.getDate()) + "/" +
+                                                 String.format("%02d", ts.getMonth() + 1)+ "/" +
+                                                 String.valueOf(ts.getYear()));
     }
-
     @Override
     public int getItemCount() {
         return remindersList.size();

@@ -31,12 +31,10 @@ public class ConnectionReceiver extends BroadcastReceiver {
             if (networkInfo != null && networkInfo.getState() == NetworkInfo.State.CONNECTED)
             {
                 styleController.setOnline();
-                System.out.println("online");
             }
             else if (intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, Boolean.FALSE))
             {
                 styleController.setOffline();
-                System.out.println("offline");
             }
 
             styleController.applyColorsRefresh(Class.activity,

@@ -2,6 +2,7 @@
           package="xyz.reminder.superreminder">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
             android:allowBackup="true"
@@ -29,6 +30,12 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+
+        <service
+                android:name=".services.TimerService"
+                android:enabled="true"
+                android:exported="true">
+        </service>
 
     </application>
 </manifest>

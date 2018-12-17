@@ -1,11 +1,9 @@
 package xyz.reminder.superreminder.activities;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +17,7 @@ import xyz.reminder.superreminder.fragments.AddReminderFragment;
 import xyz.reminder.superreminder.fragments.ListFragment;
 import xyz.reminder.superreminder.fragments.SettingsFragment;
 import xyz.reminder.superreminder.receivers.ConnectionReceiver;
+import xyz.reminder.superreminder.services.TimerService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private ReminderDbManager reminderDb;
     private StyleController styleController;
     Fragment fragment;
-//    TimerService timerService;
-//    ServiceConnection serviceConn;cd
+    TimerService timerService;
+    boolean isTimerBound = false;
+    ServiceConnection serviceConn;
 
     private Map<Integer, Integer> backgroundColorMap;
     private Map<Integer, Integer> imageColorMap;
@@ -55,6 +55,29 @@ public class MainActivity extends AppCompatActivity {
         reminderDb = new ReminderDbManager(this);
         Class.activity = this;
         registerReceiver(new ConnectionReceiver(), new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        System.out.println("======= before Bind");
+
+        MainActivity act = this;
+        serviceConn = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder serviceBinder) {
+                TimerService.MyBinder binder = (TimerService.MyBinder) serviceBinder;
+                timerService = binder.getService(act);
+                isTimerBound = true;
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                isTimerBound = false;
+            }
+        };
+        bindService(new Intent(this, TimerService.class), serviceConn, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -131,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
     public int getFragmentId() {
         return fragmentId;
+    }
+
+    public Fragment getFragment() {
+        return fragment;
     }
 }
 
